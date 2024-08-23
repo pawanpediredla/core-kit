@@ -39,20 +39,25 @@ function createStructure(basePath, structure) {
     const currentPath = path.join(basePath, key);
 
     if (Array.isArray(value)) {
+      // Ensure the directory exists before creating files
       const dir = path.dirname(currentPath);
       ensureDirectoryExists(dir);
 
+      // Create files
       value.forEach(file => {
         fs.writeFileSync(path.join(currentPath, file), '');
       });
     } else {
+      // Create directory and recurse
       ensureDirectoryExists(currentPath);
       createStructure(currentPath, value);
     }
   }
 }
 
+// Write initial content to files
 function writeInitialContent(basePath) {
+  // Create initial files with example content
   fs.writeFileSync(path.join(basePath, 'README.md'), '# My Dragon Curve\n\nA project to visualize and animate the Dragon Curve fractal.');
   fs.writeFileSync(path.join(basePath, 'package.json'), JSON.stringify({
     "name": "my-dragon-curve",
@@ -78,6 +83,7 @@ function writeInitialContent(basePath) {
   }, null, 2));
 }
 
+// Initialize project
 const projectDir = path.join(__dirname, 'my-dragon-curve');
 ensureDirectoryExists(projectDir);
 createStructure(projectDir, structure);

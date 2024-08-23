@@ -53,6 +53,7 @@ function createStructure(basePath, structure) {
 }
 
 function writeInitialContent(basePath) {
+  // Create initial files with example content
   fs.writeFileSync(path.join(basePath, 'README.md'), '# My Dragon Curve\n\nA project to visualize and animate the Dragon Curve fractal.');
   fs.writeFileSync(path.join(basePath, 'package.json'), JSON.stringify({
     "name": "my-dragon-curve",
@@ -78,6 +79,7 @@ function writeInitialContent(basePath) {
   }, null, 2));
 }
 
+// Initialize project
 const projectDir = path.join(__dirname, 'my-dragon-curve');
 ensureDirectoryExists(projectDir);
 createStructure(projectDir, structure);

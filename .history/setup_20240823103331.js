@@ -78,6 +78,7 @@ function writeInitialContent(basePath) {
   }, null, 2));
 }
 
+// Initialize project
 const projectDir = path.join(__dirname, 'my-dragon-curve');
 ensureDirectoryExists(projectDir);
 createStructure(projectDir, structure);
