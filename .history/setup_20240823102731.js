@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-
+// Define the project structure
 const structure = {
   '.github': {
     'workflows': ['node.js.yml', 'deploy.yml', 'release.yml'],
