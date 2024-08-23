@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+// Define the project structure
 const structure = {
   '.github': {
     'workflows': ['node.js.yml', 'deploy.yml', 'release.yml'],
@@ -27,6 +28,7 @@ const structure = {
   'release': ['release-notes.md', 'versioning.md']
 };
 
+// Ensure a directory exists
 function ensureDirectoryExists(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });

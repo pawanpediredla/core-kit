@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+// Define the project structure
 const structure = {
   '.github': {
     'workflows': ['node.js.yml', 'deploy.yml', 'release.yml'],
@@ -27,24 +28,29 @@ const structure = {
   'release': ['release-notes.md', 'versioning.md']
 };
 
+// Ensure a directory exists
 function ensureDirectoryExists(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
 }
 
+// Create directories and files
 function createStructure(basePath, structure) {
   for (const [key, value] of Object.entries(structure)) {
     const currentPath = path.join(basePath, key);
 
     if (Array.isArray(value)) {
+      // Ensure the parent directory exists
       const parentDir = path.dirname(currentPath);
       ensureDirectoryExists(parentDir);
 
+      // Create files
       value.forEach(file => {
         fs.writeFileSync(path.join(parentDir, file), '');
       });
     } else {
+      // Create directory and recurse
       ensureDirectoryExists(currentPath);
       createStructure(currentPath, value);
     }
